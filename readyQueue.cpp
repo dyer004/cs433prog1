@@ -34,7 +34,8 @@ int queue::size()
 // if empty, displays [ empty ]
 void queue::displayQueue()
 {
-    
+    cout << endl;
+    cout << "Queue Contents: " << endl;
     if (el.empty()) //if queue is empty, print [ empty ]
     {
         cout << "[ empty ]" << endl;
@@ -64,7 +65,7 @@ void queue::insertProc(el_t e)
     {
         int jobPriority = e.getPriority(); //get priority level of e
         list<el_t>::iterator it; //declare list iterator
-        for (it=el.begin(); it != el.end(); ++it) //for loop iterates through entire list
+        for (it=el.begin(); it != el.end() && inserted == false; it++) //for loop iterates through entire list
         {
             if (jobPriority < it->getPriority()) //if we find a job with lower priority than e
             {
@@ -89,4 +90,5 @@ el_t queue::removeHighestProc()
     el.erase(it); //erase first item in list
     return highestProc;
 }
+
 
